@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- navbar -->
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand mx-auto" href="/"><strong>Covid Xray Detection</strong></a>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="d-flex justify-content-end">
+        <a href="../static/test-images.zip" class="btn btn-outline-info" download="test-images.zip">Download Test
+            Images</a>
+    </div>
+</div>
+
+<br>
+<br>
+<!-- Prediction Upload -->
+<div class="container">
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <div class="input-group">
+            <input type="file" class="form-control" id="image" name="image" placeholder="Upload an Image"
+                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+            <button class="btn btn-outline-secondary" type="Sumbit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% if alert == 0 %}
+<div class="container">
+    <div class="alert alert-danger text-center" role="alert">
+        <p class="text-center fs-3" style = "{{ style }}">The person has COVID</p>
+      </div>
+</div>
+{% elif alert == 1 %}
+<div class="container">
+    <div class="alert alert-success text-center" role="alert">
+        <p class="text-center fs-3" style = "{{ style }}">The person DOES NOT have COVID</p>
+      </div>
+</div>
+{% endif %}
+
+{% endblock %}
